@@ -14,6 +14,7 @@
 //     </div>
 //   );
 // };
+
 import { Component } from 'react';
 
 export class App extends Component {
@@ -23,6 +24,8 @@ export class App extends Component {
     bad: 0,
   };
 
+  
+  
   handleIncrement = () => {
     this.setState(prevState => {
       return { good: prevState.good + 1 };
@@ -34,12 +37,15 @@ export class App extends Component {
     return (
       <div>
         <section>
+          <h2>ghjdla</h2>
           <h1>Please leave feedback</h1>
-          <ul></ul>
-          <button type="button" onClick={this.handleIncrement}>
-            {}
-            Cood
-          </button>
+          <ul>{Object.keys(this.state).map((btnName)=>{return (
+            <li key={btnName}>
+              <button type="button" onClick={this.handleIncrement}>
+                {btnName}
+              </button>
+            </li>
+          );})}</ul>
         </section>
         <section>
           <h1>Statistics</h1>
