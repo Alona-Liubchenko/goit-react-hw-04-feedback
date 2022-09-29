@@ -24,8 +24,6 @@ export class App extends Component {
     bad: 0,
   };
 
-  
-  
   handleIncrement = () => {
     this.setState(prevState => {
       return { good: prevState.good + 1 };
@@ -34,18 +32,23 @@ export class App extends Component {
   countTotalFeedback = () => {};
   countPositiveFeedbackPercentage = () => {};
   render() {
+    const options = this.state;
     return (
       <div>
         <section>
           <h2>ghjdla</h2>
           <h1>Please leave feedback</h1>
-          <ul>{Object.keys(this.state).map((btnName)=>{return (
-            <li key={btnName}>
-              <button type="button" onClick={this.handleIncrement}>
-                {btnName}
-              </button>
-            </li>
-          );})}</ul>
+          <ul>
+            {Object.keys(options).map(btnName => {
+              return (
+                <li key={btnName}>
+                  <button type="button" onClick={this.handleIncrement}>
+                    {btnName}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </section>
         <section>
           <h1>Statistics</h1>
