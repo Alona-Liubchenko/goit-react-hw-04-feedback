@@ -22,6 +22,7 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
+
   handleIncrement = () => {
     this.setState(prevState => {
       return { good: prevState.good + 1 };
