@@ -24,15 +24,25 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleIncrement = () => {
+  handleIncrement = event => {
+    const label = event.target.textContent;
     this.setState(prevState => {
-      return { good: prevState.good + 1 };
+      return { [label]: prevState[label] + 1 };
     });
   };
-  countTotalFeedback = () => {};
-  countPositiveFeedbackPercentage = () => {};
+  countTotalFeedback = () => {
+    return Object.values(this.state).reduce((acc, n) => {
+      return acc + n;
+    }, 0);
+  };
+  countPositiveFeedbackPercentage = () => {
+    return this.state.good !== 0
+      ? Number.parseInt((this.state.good / this.countTotalFeedback()) * 100)
+      : 0;
+  };
   render() {
     const options = this.state;
+
     return (
       <div>
         <section>
@@ -56,6 +66,10 @@ export class App extends Component {
             <li>Cood: {this.state.good}</li>
             <li>Neutral: {this.state.neutral}</li>
             <li>Bad: {this.state.bad}</li>
+            <li>Total:{this.countTotalFeedback()}</li>
+            <li>
+              Positive Feedback: {this.countPositiveFeedbackPercentage()} %
+            </li>
           </ul>
         </section>
       </div>
